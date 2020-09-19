@@ -57,8 +57,9 @@ void fragment() {
 		COLOR.rgb = mix(
 			texture(TEXTURE,UV).rgb,
 			goo.rgb,
-			texture(mask,UV).rgb * intensity
+			(texture(mask,UV).rgb * intensity) * goo.a
 		);
+		
 	} else {
 		COLOR.rgb = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).rgb * intensity;
 	}
