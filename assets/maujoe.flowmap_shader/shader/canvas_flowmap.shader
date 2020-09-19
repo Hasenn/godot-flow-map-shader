@@ -6,6 +6,7 @@ uniform float intensity : hint_range(0.,1.) = 1.;
 uniform sampler2D flow_texture : hint_white;
 uniform sampler2D mask : hint_white;
 
+uniform vec2 DC_flow = vec2(0);
 uniform float flow_speed : hint_range(-3.,3.) = 1.;
 uniform sampler2D flow_map : hint_normal;
 
@@ -20,6 +21,7 @@ uniform vec2 channel_flow_direction = vec2(1.0, -1.0);
 uniform float blend_cycle = 1.0;
 uniform float cycle_speed = 1.0;
 
+//uv scrolling
 void fragment() {
 	
 	// UV flow  calculation
@@ -45,8 +47,8 @@ void fragment() {
 	phase1 -= half_cycle;
 	phase2 -= half_cycle;
 
-	vec2 layer1 = flow * phase1 + UV;
-	vec2 layer2 = flow * phase2 + UV;
+	vec2 layer1 = fract(flow * phase1 + UV + DC_flow * TIME) ;
+	vec2 layer2 = fract(flow * phase2 + UV + DC_flow * TIME) ;
 	
 	vec4 goo = mix(
 		texture(flow_texture,layer1),

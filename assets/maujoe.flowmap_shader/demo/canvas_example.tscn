@@ -21,6 +21,7 @@ gradient = SubResource( 3 )
 shader = ExtResource( 1 )
 shader_param/toggle_add = false
 shader_param/intensity = 1.0
+shader_param/DC_flow = Vector2( 0.1, 0 )
 shader_param/flow_speed = 3.0
 shader_param/flow_noise_size = Vector2( 1, 1 )
 shader_param/flow_noise_influence = 1.0
