@@ -1,5 +1,11 @@
 shader_type canvas_item;
 render_mode blend_mix;
+
+uniform bool toggle_add = true;
+uniform float intensity : hint_range(0.,1.) = 1.;
+uniform sampler2D flow_texture : hint_white;
+uniform sampler2D mask : hint_white;
+
 uniform float flow_speed : hint_range(-3.,3.) = 1.;
 uniform sampler2D flow_map : hint_normal;
 
@@ -42,9 +48,18 @@ void fragment() {
 	vec2 layer1 = flow * phase1 + UV;
 	vec2 layer2 = flow * phase2 + UV;
 	
-	COLOR = mix(
-		texture(TEXTURE,layer1),
-		texture(TEXTURE,layer2),
+	vec4 goo = mix(
+		texture(flow_texture,layer1),
+		texture(flow_texture,layer2),
 		blend_factor
 	);
+	if (!toggle_add) {
+		COLOR.rgb = mix(
+			texture(TEXTURE,UV).rgb,
+			goo.rgb,
+			texture(mask,UV).rgb * intensity
+		);
+	} else {
+		COLOR.rgb = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).rgb * intensity;
+	}
 }
