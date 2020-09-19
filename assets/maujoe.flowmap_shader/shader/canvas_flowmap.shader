@@ -64,7 +64,7 @@ void fragment() {
 		);
 		
 	} else {
-		col = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).rgb * intensity;
+		col = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).r * intensity * goo.a;
 	}
 	COLOR = vec4(
 		col,
