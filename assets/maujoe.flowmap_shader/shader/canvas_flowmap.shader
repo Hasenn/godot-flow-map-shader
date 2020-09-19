@@ -53,14 +53,19 @@ void fragment() {
 		texture(flow_texture,layer2),
 		blend_factor
 	);
+	vec3 col = vec3(0);
 	if (!toggle_add) {
-		COLOR.rgb = mix(
+		col= mix(
 			texture(TEXTURE,UV).rgb,
 			goo.rgb,
 			(texture(mask,UV).rgb * intensity) * goo.a
 		);
 		
 	} else {
-		COLOR.rgb = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).rgb * intensity;
+		col = texture(TEXTURE,UV).rgb + goo.rgb * texture(mask,UV).rgb * intensity;
 	}
-}
+	COLOR = vec4(
+		col,
+		texture(TEXTURE,UV).a
+	);
+	}

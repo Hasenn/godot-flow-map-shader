@@ -2,7 +2,7 @@
 
 [ext_resource path="res://assets/maujoe.flowmap_shader/shader/canvas_flowmap.shader" type="Shader" id=1]
 [ext_resource path="res://assets/maujoe.flowmap_shader/demo/textures/flowmap.png" type="Texture" id=2]
-[ext_resource path="res://assets/maujoe.flowmap_shader/demo/textures/lava.png" type="Texture" id=3]
+[ext_resource path="res://BugmomFlowMask.png" type="Texture" id=3]
 [ext_resource path="res://assets/BugmomFlowNoise.png" type="Texture" id=4]
 
 [sub_resource type="OpenSimplexNoise" id=1]
